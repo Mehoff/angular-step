@@ -1,0 +1,9 @@
+<!-- Articles -->
+<ul>
+    <li *ngFor="let article of articles" [ngClass]="(article.id % 2 === 0) ? 'even' : 'odd'">
+        <h1>{{article.title}}</h1>
+        <h2>{{article.subtitle}}</h2>
+        <p>{{article.text}}</p>
+    </li>
+</ul>
+
