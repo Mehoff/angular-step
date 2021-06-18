@@ -13,6 +13,11 @@ export class ArticleListComponent implements OnInit {
   
   ngOnInit(): void {
   }
+
+  onClick(id: number){
+    //Navigate to Article Page or change className from 'closed' to 'opened'
+    alert(this.articles.find((article) => article.id == id)?.title)
+  }
     
   articles: Article[] = ARTICLES;
 
