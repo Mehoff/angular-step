@@ -1,9 +1,14 @@
 <!-- Articles -->
 <ul>
-    <li *ngFor="let article of articles; let i = index" [ngClass]="(i % 2 === 0) ? 'even' : 'odd'" (click)="onClick(article.id)">
+    <li *ngFor="let article of articles; let i = index" 
+        [ngClass]="(i % 2 === 0) ? 'even' : 'odd'" 
+        (click)="onClick(article.id)">
+        
         <h1>{{article.title}}</h1>
         <h2>{{article.subtitle}}</h2>
-        <p>{{article.text}}</p>
+        
+        <p *ngIf="article.hidden == false; else shownArticle">{{article.text}}</p>
+        <ng-template #shownArticle>{{article.text.substr(0,10)}}...</ng-template>
     </li>
 </ul>
     

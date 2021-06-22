@@ -3,6 +3,7 @@ export class Article{
     title: string;
     subtitle: string;
     text: string;
+    hidden: boolean | true;
     date?: Date;
     imgUri?: string;
 
@@ -11,12 +12,12 @@ export class Article{
         this.title = title;
         this.subtitle = subtitle;
         this.text = text;
-        
+        this.hidden = true;
+
+        if(date)
+            this.date = date;            
         if(imgUri)
             this.imgUri = imgUri;
 
-        if(date)
-            this.date = date;
-        
     }
 }
