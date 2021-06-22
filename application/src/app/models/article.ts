@@ -1,11 +1,11 @@
 export class Article{
-    id: number;
-    title: string;
-    subtitle: string;
-    text: string;
+    id: number | -1;
+    title: string | 'undefined';
+    subtitle: string | 'undefined';
+    text: string | 'undefined';
     hidden: boolean | true;
     date?: Date;
-    imgUri?: string;
+    imgUri?: string | 'undefined';
 
     constructor(id: number, title: string, subtitle: string, text: string, date?: Date, imgUri?: string){
         this.id = id;

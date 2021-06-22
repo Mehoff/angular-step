@@ -15,15 +15,11 @@ export class ArticleListComponent implements OnInit {
   }
 
   onClick(id: number){
-    //Navigate to Article Page or change className from 'closed' to 'opened'
-    //alert(this.articles.find((article) => article.id == id)?.title)
-
-    let article = this.articles.find((article) => article.id == id);
-    article!.hidden = !article!.hidden;
-
+    this.articles.forEach(article => {
+        article.hidden = !(article.id == id)
+    });
   }
   
   articles: Article[] = ARTICLES;
-
-
+  
 }

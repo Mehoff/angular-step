@@ -1,5 +1,5 @@
 *{
-    color: white;
+    color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -10,4 +10,8 @@ body{
 
 .container{
     width: 100%;
+}
+
+.app-logo{
+    cursor: pointer;
 }

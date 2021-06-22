@@ -1,0 +1,27 @@
+<div class="article-container">
+    <div *ngIf="article; else noArticle">
+        <p class="article-title">{{article.title}}</p>
+
+        <div class="one-line">
+            <p class="article-subtitle">{{article.subtitle}}</p>
+    
+            <div *ngIf="article.date">
+                <p class="article-date">{{article.date.toLocaleString()}}</p>
+            </div>
+        </div>
+
+    
+        <div *ngIf="article.imgUri">
+            <img class="article-image" src="{{article.imgUri}}" alt="Article Image">
+        </div>
+    
+        <p class="article-text">{{article.text}}</p>
+    </div>
+    <ng-template #noArticle>
+        <p>No article specified</p>
+    </ng-template>
+</div>
+
+
+
+
