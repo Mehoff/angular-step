@@ -1,18 +1,23 @@
-<ul>
-    <li *ngFor="let article of articles; let i = index" 
-        [ngClass]="(i % 2 === 0) ? 'even' : 'odd'" 
+ <div class="grid-container">
+    <div class="search">
+        <label for="search-bar">Поиск по статьям: </label>
+        <input type="text" name="search-bar" id="search-bar">
+        <input type="button" name="search-button" id="search-button" value="Поиск" 
+        (click)="search()">
+    </div>
+    <div class="grid-item" *ngFor="let article of articles; let i = index"
+        [ngClass]="(i % 2 === 0) ? 'even' : 'odd'"
         (click)="onClick(article.id)">
-        
+
         <h1>{{article.title}}</h1>
         <h2>{{article.subtitle}}</h2>
-        
-
-        <div *ngIf="article.hidden == false; else shownArticle">
-            <p>{{article.text}}</p>
-            <a routerLink="/articles/{{article.id}}" class="article-read-more">> Read more</a>
-        </div>
-        
-        <ng-template #shownArticle>{{article.text.substr(0,10)}}...</ng-template>
-    </li>
-</ul>
     
+        <div *ngIf="article.hidden == false;">
+            <h3>{{article.text.substr(0,25)}}...</h3>
+            <a [routerLink]="[article.id]" class="article-read-more">> Читать полностью</a>
+        </div>
+    </div>
+    <div *ngIf="articles.length === 0">
+        <p class='no-search-result'>Нет статей соответсвующих поисковому запросу</p>
+    </div>
+ </div>

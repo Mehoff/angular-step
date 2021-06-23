@@ -11,6 +11,8 @@ export class ArticleListComponent implements OnInit {
 
   constructor() { }
   
+  articles: Article[] = ARTICLES;
+
   ngOnInit(): void {
   }
 
@@ -19,7 +21,19 @@ export class ArticleListComponent implements OnInit {
         article.hidden = !(article.id == id)
     });
   }
-  
-  articles: Article[] = ARTICLES;
-  
+
+  search(){
+    const searchBar = document.getElementById('search-bar') as HTMLInputElement;
+    const text = searchBar.value.trim();
+
+    if(text.length > 0){
+      this.articles = ARTICLES.filter(article => { 
+        return article.title.toLowerCase().includes(text.toLowerCase());
+      })
+    }
+    
+    else{
+      this.articles = ARTICLES;
+    }
+  }
 }
