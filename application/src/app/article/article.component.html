@@ -11,11 +11,16 @@
         </div>
 
     
-        <div *ngIf="article.imgUri">
+        <!-- <div *ngIf="article.imgUri">
             <img class="article-image" src="{{article.imgUri}}" alt="Article Image">
-        </div>
+        </div> -->
     
         <p class="article-text">{{article.text}}</p>
+
+        <div *ngFor="let comment of article.comments;">
+            <p>{{comment.name}}</p>
+            <p>{{comment.text}}</p>
+        </div>
     </div>
     <ng-template #noArticle>
         <p>No article specified</p>

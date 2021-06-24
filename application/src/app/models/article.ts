@@ -1,3 +1,5 @@
+import { Comment } from "./comment";
+
 export class Article{
     id: number | -1;
     title: string | 'undefined';
@@ -5,9 +7,16 @@ export class Article{
     text: string | 'undefined';
     hidden: boolean | true;
     date?: Date;
-    imgUri?: string | 'undefined';
+    images?: string[];
+    comments?: Comment[]
 
-    constructor(id: number, title: string, subtitle: string, text: string, date?: Date, imgUri?: string){
+    constructor(id: number,
+                title: string,
+                subtitle: string, 
+                text: string, 
+                date?: Date, 
+                images?: string[],
+                comments?: any[]){
         this.id = id;
         this.title = title;
         this.subtitle = subtitle;
@@ -16,8 +25,15 @@ export class Article{
 
         if(date)
             this.date = date;            
-        if(imgUri)
-            this.imgUri = imgUri;
-
+        if(images){
+            images.forEach(image => {
+                this.images?.push(image);
+            })
+        }
+        if(comments){
+            comments.forEach(comment => {
+                this.comments?.push(new Comment(comment.name, comment.text));
+            })
+        }
     }
 }

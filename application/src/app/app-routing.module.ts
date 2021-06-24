@@ -5,12 +5,12 @@ import { RouterModule, Route } from '@angular/router';
 // === COMPONENTS ===
 import { ArticleComponent } from './article/article.component'
 import { ArticleListComponent } from './article-list/article-list.component';
-// import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Route[] = [
   { path: "articles/:id", component: ArticleComponent },
-  { path: "articles", component: ArticleListComponent},
-  // { path: "", component: AppComponent }
+  { path: "articles", component: ArticleListComponent },
+  { path: "about", component: AboutComponent }
 ];
 
 

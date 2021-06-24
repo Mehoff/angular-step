@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../models/article';
 import { ARTICLES } from '../mocks/article-mock'
+import { ArticlesService } from '../services/articles.service';
+
 
 @Component({
   selector: 'app-article-list',
@@ -9,11 +11,15 @@ import { ARTICLES } from '../mocks/article-mock'
 })
 export class ArticleListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private articleService: ArticlesService) { }
   
-  articles: Article[] = ARTICLES;
-
+  articles: Article[] = [];
+  
   ngOnInit(): void {
+    //this.articleService.getArticles().subscribe(articles => this.articles = articles);
+    console.log('articleService\n');
+    this.articleService.getArticles().subscribe(articles => this.articles = articles);
+    
   }
 
   onClick(id: number){
@@ -27,13 +33,15 @@ export class ArticleListComponent implements OnInit {
     const text = searchBar.value.trim();
 
     if(text.length > 0){
-      this.articles = ARTICLES.filter(article => { 
-        return article.title.toLowerCase().includes(text.toLowerCase());
+      this.articleService.getArticles().subscribe(articles => {
+        this.articles = articles.filter(a => {
+          return a.title.toLowerCase().includes(text.toLowerCase());
+        })
       })
     }
     
     else{
-      this.articles = ARTICLES;
+      this.articleService.getArticles().subscribe(articles => this.articles = articles);
     }
   }
 }

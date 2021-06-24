@@ -105,12 +105,15 @@ li:hover{
     padding-left: 10px;
     padding-right: 10px;
     width: fit-content;
+    background-color: white;
 
     transition: 250ms;
 }
 
 #search-button:hover{
-    border-color: black;
+    background-color: lightskyblue;
+    color: white;
+    cursor: pointer;
 }
 
 .no-search-result{
@@ -127,4 +130,16 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-
+@media only screen and (max-width: 600px) {
+    .grid-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-columns: minmax(30px, 60px);
+    }
+    
+    .search{
+        grid-column: 1/2;
+        text-align: center;
+        margin: 5px 5px 20px 5px ;
+    }
+}

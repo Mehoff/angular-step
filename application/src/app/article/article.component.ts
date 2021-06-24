@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from '../models/article';
 import { ARTICLES } from '../mocks/article-mock';
+import { ArticlesService } from '../services/articles.service';
 
 @Component({
   selector: 'app-article',
@@ -14,13 +15,14 @@ export class ArticleComponent implements OnInit {
   
   article?: Article;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private articleService: ArticlesService) { }
 
   ngOnInit(): void {
     // Дрянь какая-то
     var n = this.router.url.lastIndexOf('/');
     var id = this.router.url.substring(n + 1);
-    this.article = ARTICLES.find((article) => article.id.toString() == id)
+    //this.article = ARTICLES.find((article) => article.id.toString() == id)
+    this.articleService.getArticles().subscribe(articles => this.article = articles.find((a) => a.id.toString() == id));
   }
 
 }
