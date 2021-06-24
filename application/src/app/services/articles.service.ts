@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article } from '../models/article';
 import { Comment } from '../models/comment';
@@ -19,7 +19,8 @@ export class ArticlesService {
   }
 
   sendComment(id: number, comment: Comment){
-    // Todo: send comment to API 
+    const url = this.baseUrl + "post-comment";
+    return this.http.put<Article>(url, {id: id, name: comment.name, text: comment.text});
   }
 
 }

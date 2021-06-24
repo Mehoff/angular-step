@@ -21,17 +21,22 @@ export class ArticleComponent implements OnInit {
   }
 
   onCommentSubmit(){
-    let name = (document.getElementById('commment-name') as HTMLInputElement).value.trim();
-    let text = (document.getElementById('commment-text') as HTMLInputElement).value.trim();
+    console.log('onCommentSubmit')
+
+    let name = (document.getElementById('comment-name') as HTMLInputElement).value.trim();
+    let text = (document.getElementById('comment-text') as HTMLInputElement).value.trim();
 
     let comment = new Comment(name, text);
 
     if(!this.validateComment(comment)){
       alert('Некорректные введенные данные');
+      return;
     }
 
+    console.log(comment);
+
     if(this.article){
-      this.articleService.sendComment(this.article.id, comment);
+      this.articleService.sendComment(this.article.id, comment).subscribe(article => this.article = article);
     }
   }
 
