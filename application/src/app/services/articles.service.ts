@@ -23,4 +23,9 @@ export class ArticlesService {
     return this.http.put<Article>(url, {id: id, name: comment.name, text: comment.text});
   }
 
+  getNextArticleId() : Observable<any>{
+    const url = this.baseUrl + "next-article-id";
+    return this.http.get<any>(url);
+  }
+
 }

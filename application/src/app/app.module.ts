@@ -10,6 +10,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticlesService } from './services/articles.service';
+import { ArticleAddComponent } from './article-add/article-add.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ArticlesService } from './services/articles.service';
     ArticleListComponent,
     ArticleComponent,
     NavigationBarComponent,
-    AboutComponent
+    AboutComponent,
+    ArticleAddComponent
   ],
   imports: [
     BrowserModule,
