@@ -37,12 +37,37 @@
     color: dimgray;
     text-decoration: underline;
 }
-.article-image{
-    max-width: 300px;
-}
+
 .article-text{
-    
     font-size: 11px;
     font-stretch: expanded;
+    margin-bottom: 40px;
+}
 
+.image{
+    border: 10px solid lightskyblue;
+
+    transition: 250ms;
+}
+
+.image:hover{
+    border-color: black;
+    cursor: pointer;
+}
+
+.article-comments{
+    text-align: left;
+}
+
+.comment{
+    margin-bottom: 20px;
+}
+
+.comment-name{
+    font-size: 18px;
+}
+
+.comment-text{
+
+    font-size: 12px;
 }

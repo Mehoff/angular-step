@@ -9,18 +9,34 @@
                 <p class="article-date">{{article.date.toLocaleString()}}</p>
             </div>
         </div>
-
-    
-        <!-- <div *ngIf="article.imgUri">
-            <img class="article-image" src="{{article.imgUri}}" alt="Article Image">
-        </div> -->
     
         <p class="article-text">{{article.text}}</p>
 
-        <div *ngFor="let comment of article.comments;">
-            <p>{{comment.name}}</p>
-            <p>{{comment.text}}</p>
+        <div class="article-images">
+            <div *ngFor="let imgUri of article.images">
+                <img class="image" src="{{imgUri}}" style="width: 200px;" (click)="onImageClick(imgUri)"/>
+            </div>
         </div>
+
+        <div class="article-comments">
+            <h1 style="margin-bottom: 50px;">Комментарии:</h1>
+            <div *ngFor="let comment of article.comments;">
+                <div class="comment">
+                    <p class="comment-name">{{comment.name}}</p>
+                    <p class="comment-text">{{comment.text}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-comment-input">
+            <label for="name">Имя: </label>
+            <input type="text" name="name" id="commentName"/><br/>
+
+            <label for="name">Комментарий: </label>
+            <input type="text" name="text" id="commentText"/><br/>
+            <input type="button" (click)="onCommentSubmit()" value="Добавить"/><br/>
+        </div>
+
     </div>
     <ng-template #noArticle>
         <p>No article specified</p>

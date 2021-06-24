@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Article } from '../models/article';
 import { ARTICLES } from '../mocks/article-mock';
 import { ArticlesService } from '../services/articles.service';
+import { Comment } from '../models/comment';
 
 @Component({
   selector: 'app-article',
@@ -11,17 +12,36 @@ import { ArticlesService } from '../services/articles.service';
 })
 export class ArticleComponent implements OnInit {
 
-  // Хочется перейти на @Input
-  
   article?: Article;
 
   constructor(private router: Router, private articleService: ArticlesService) { }
 
+  onImageClick(uri: string){
+    window.open(uri, 'Image');
+  }
+
+  onCommentSubmit(){
+    let name = (document.getElementById('commment-name') as HTMLInputElement).value.trim();
+    let text = (document.getElementById('commment-text') as HTMLInputElement).value.trim();
+
+    let comment = new Comment(name, text);
+
+    if(!this.validateComment(comment)){
+      alert('Некорректные введенные данные');
+    }
+
+    if(this.article){
+      this.articleService.sendComment(this.article.id, comment);
+    }
+  }
+
+  validateComment(comment: Comment){
+    return (comment.name.length > 0 && comment.name.length < 30 && comment.text.length > 0 && comment.text.length < 255)
+  }
+
   ngOnInit(): void {
-    // Дрянь какая-то
-    var n = this.router.url.lastIndexOf('/');
-    var id = this.router.url.substring(n + 1);
-    //this.article = ARTICLES.find((article) => article.id.toString() == id)
+    let n = this.router.url.lastIndexOf('/');
+    let id = this.router.url.substring(n + 1);
     this.articleService.getArticles().subscribe(articles => this.article = articles.find((a) => a.id.toString() == id));
   }
 
