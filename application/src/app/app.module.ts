@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticlesService } from './services/articles.service';
 import { ArticleAddComponent } from './article-add/article-add.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ArticleAddComponent } from './article-add/article-add.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ArticlesService],
+  providers: [ArticlesService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

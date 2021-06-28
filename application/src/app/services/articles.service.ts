@@ -23,6 +23,11 @@ export class ArticlesService {
     return this.http.put<Article>(url, {id: id, name: comment.name, text: comment.text});
   }
 
+  postArticle(article: any){
+    const url = this.baseUrl + "post-article";
+    return this.http.put<any>(url, article);
+  }
+
   getNextArticleId() : Observable<any>{
     const url = this.baseUrl + "next-article-id";
     return this.http.get<any>(url);

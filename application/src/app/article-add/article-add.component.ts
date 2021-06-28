@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../models/article';
 import { ArticlesService } from '../services/articles.service';
@@ -9,7 +10,7 @@ import { ArticlesService } from '../services/articles.service';
 })
 export class ArticleAddComponent implements OnInit {
 
-  constructor(private articleService: ArticlesService) { }
+  constructor(private articleService: ArticlesService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
   }
@@ -48,18 +49,16 @@ export class ArticleAddComponent implements OnInit {
     let title = (document.getElementById('title') as HTMLInputElement).value.trim();
     let subtitle = (document.getElementById('subtitle') as HTMLInputElement).value.trim();
     let text = (document.getElementById('text') as HTMLInputElement).value.trim();
-    let date = Date.now().toLocaleString();
+    let date = this.datepipe.transform(Date.now(), 'MMM d, y, hh:mm a')
     let imageNodes = document.getElementsByClassName('input-image');
 
 
-    let urls: Array<any> = [];
+    let images: Array<any> = [];
 
     Array.from(imageNodes).forEach((element) => {
-      //let url = (element as HTMLInputElement).value; 
-
-      urls?.push({
-        url: (element as HTMLInputElement).value
-      })
+      images?.push(
+        (element as HTMLInputElement).value
+      )
     })
     
     let newArticle = {
@@ -67,9 +66,19 @@ export class ArticleAddComponent implements OnInit {
         subtitle,
         text,
         date,
-        urls
+        images
     }
 
     console.log(newArticle);
+
+    this.articleService.postArticle(newArticle).subscribe(result => {
+      if(result.err){
+        alert(result.err);
+        return;
+      }
+      //TODO Route to New Article
+      alert('Пост отправлен')
+      console.log(result);
+    })
   }
 }
