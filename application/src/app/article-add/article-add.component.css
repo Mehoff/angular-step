@@ -1,0 +1,56 @@
+.add-article-title{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.text-input{
+    border: 2px solid lightskyblue;
+    border-radius: 8px;
+    padding: 4px;
+}
+.text-input:focus{
+    border: 2px solid black;
+    outline: none;
+}
+
+.grid-container{
+    display: grid;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 2fr;
+    text-align: left;
+}
+
+.button{
+    background-color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 2px solid lightskyblue;
+    padding: 8px;
+    
+    min-width: 200px;
+    transition: 250ms;
+}
+
+.button:hover{
+    background-color: lightskyblue;
+    color: white;
+}
+
+#add-article-button{
+    text-align: center;
+}
+
+#text{
+    min-height: 200px;
+    resize:vertical;
+}
+
+.wrapper{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

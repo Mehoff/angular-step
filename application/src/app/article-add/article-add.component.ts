@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../models/article';
 import { ArticlesService } from '../services/articles.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-add',
@@ -10,7 +11,11 @@ import { ArticlesService } from '../services/articles.service';
 })
 export class ArticleAddComponent implements OnInit {
 
-  constructor(private articleService: ArticlesService, public datepipe: DatePipe) { }
+  constructor(
+    private articleService: ArticlesService, 
+    public datepipe: DatePipe,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +27,9 @@ export class ArticleAddComponent implements OnInit {
 
       let input = document.createElement('input');
       input.type="text";
-      input.className = "input-image";
+      input.classList.add("text-input")
       let button = document.createElement('button');
+      button.classList.add('button')
       button.textContent = "Удалить картинку";
       button.addEventListener('click', (event) => this.deleteImage(event))
 
@@ -40,12 +46,17 @@ export class ArticleAddComponent implements OnInit {
     button.parentElement?.remove();
   }
 
+  validateArticle(article: any){
+    if(article.title.length > 3 && article.subtitle.length > 3 && article.text.length > 10){
+      return true;
+    }
+    else return false;
+  }
+
   addArticle(){
     let nextId: number;
     this.articleService.getNextArticleId().subscribe(res => nextId = res.id);
     
-    //TODO: make new article properties validation
-
     let title = (document.getElementById('title') as HTMLInputElement).value.trim();
     let subtitle = (document.getElementById('subtitle') as HTMLInputElement).value.trim();
     let text = (document.getElementById('text') as HTMLInputElement).value.trim();
@@ -56,9 +67,11 @@ export class ArticleAddComponent implements OnInit {
     let images: Array<any> = [];
 
     Array.from(imageNodes).forEach((element) => {
-      images?.push(
-        (element as HTMLInputElement).value
-      )
+
+      const url = (element as HTMLInputElement).value.trim();
+
+      if(url.match(/(https?:\/\/.*\.(?:png|jpg))/))
+        images?.push(url)
     })
     
     let newArticle = {
@@ -69,16 +82,18 @@ export class ArticleAddComponent implements OnInit {
         images
     }
 
-    console.log(newArticle);
+    if(!this.validateArticle(newArticle)){
+      alert('Не все данные введены корректно!');
+      return;
+    }
 
     this.articleService.postArticle(newArticle).subscribe(result => {
       if(result.err){
         alert(result.err);
         return;
       }
-      //TODO Route to New Article
       alert('Пост отправлен')
-      console.log(result);
+      this.router.navigate([`/articles/${result.id}`])
     })
   }
 }

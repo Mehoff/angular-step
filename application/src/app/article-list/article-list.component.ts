@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../models/article';
-import { ARTICLES } from '../mocks/article-mock'
 import { ArticlesService } from '../services/articles.service';
 
 
@@ -16,10 +15,7 @@ export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
   
   ngOnInit(): void {
-    //this.articleService.getArticles().subscribe(articles => this.articles = articles);
-    console.log('articleService\n');
     this.articleService.getArticles().subscribe(articles => this.articles = articles);
-    
   }
 
   onClick(id: number){

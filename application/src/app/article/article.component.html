@@ -18,25 +18,34 @@
             </div>
         </div>
 
-        <div class="article-comments">
-            <h1 style="margin-bottom: 50px;">Комментарии:</h1>
-            <div *ngFor="let comment of article.comments;">
-                <div class="comment">
-                    <p class="comment-name">{{comment.name}}</p>
-                    <p class="comment-text">{{comment.text}}</p>
+
+        <div *ngIf="article.comments == undefined || article.comments.length == 0; else elseBlock">
+            <h1 style="margin-bottom: 50px; text-align: left;">Будьте первым кто оставит комментарий!</h1>
+        </div>
+
+        <ng-template #elseBlock>
+            <div class="article-comments">
+                <h1 style="margin-bottom: 50px;">Комментарии:</h1>
+                <div *ngFor="let comment of article.comments;">
+                    <div class="comment">
+                        <p class="comment-name">{{comment.name}}</p>
+                        <p class="comment-text">{{comment.text}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-template>
+
+
 
         <div class="article-comment-input">
-            <label for="name">Имя: </label>
-            <input type="text" name="name" id="comment-name"/><br/>
+            <label class="grid-item" for="name">Имя: </label>
+            <input class="grid-item comment-input" type="text" name="name" id="comment-name"/>
 
-            <label for="name">Комментарий: </label>
-            <input type="text" name="text" id="comment-text"/><br/>
-
-            <input type="button" (click)="onCommentSubmit()" value="Добавить"/><br/>
+            <label class="grid-item" for="name">Комментарий: </label>
+            <input class="grid-item comment-input" type="text" name="text" id="comment-text"/>
         </div>
+        
+        <input type="button" class="article-comment-submit" (click)="onCommentSubmit()" value="Добавить"/>
 
     </div>
     <ng-template #noArticle>

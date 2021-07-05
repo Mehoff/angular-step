@@ -1,25 +1,29 @@
-<h1>Добавление новой статьи</h1>
+<h1 class="add-article-title">Добавление новой статьи</h1>
 
-<label for="title">Заголовок</label><br/>
-<input type="text" name="title" id="title"><br/><br/>
+<div class="grid-container">
+    <label for="title">Заголовок</label>
+    <input class="text-input" type="text" name="title" id="title">
 
-<label for="subtitle">Подзаголовок</label><br/>
-<input type="text" name="subtitle" id="subtitle"><br/><br/>
+    <label for="subtitle">Подзаголовок</label>
+    <input class="text-input" type="text" name="subtitle" id="subtitle">
 
-<label for="text">Текст статьи</label><br/>
+<label for="text">Текст статьи</label>
 
 <!-- <input type="text" name="text" id="text"><br/><br/> -->
 
-<textarea name="text" id="text">
+<textarea class="text-input" name="text" id="text">
 
-</textarea><br/><br/>
-
-<h2>Ссылки на картинки:</h2>
-<ul id="image-list"></ul>
-<button (click)="addImage()">Добавить картинку</button><br/><br/>
-<button (click)="addArticle()">Добавить статью</button>
+</textarea>
+</div>
 
 
+
+<div class="wrapper">
+    <h2>Ссылки на картинки:</h2>
+    <ul id="image-list"></ul>
+    <button class="button" (click)="addImage()">Добавить картинку</button><br/><br/>
+    <button class="button" id="add-article-button" (click)="addArticle()">Добавить статью</button>
+</div>
 
 
 
