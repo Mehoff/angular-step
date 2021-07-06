@@ -33,4 +33,8 @@ export class ArticlesService {
     return this.http.get<any>(url);
   }
 
+  getLastArticle() : Observable<Article>{
+    return this.http.get<Article>(this.baseUrl + "lastArticle");
+  }
+
 }

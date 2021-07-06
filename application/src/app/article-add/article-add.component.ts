@@ -28,6 +28,8 @@ export class ArticleAddComponent implements OnInit {
       let input = document.createElement('input');
       input.type="text";
       input.classList.add("text-input")
+      input.classList.add("input-image")
+
       let button = document.createElement('button');
       button.classList.add('button')
       button.textContent = "Удалить картинку";
@@ -67,11 +69,9 @@ export class ArticleAddComponent implements OnInit {
     let images: Array<any> = [];
 
     Array.from(imageNodes).forEach((element) => {
-
       const url = (element as HTMLInputElement).value.trim();
-
       if(url.match(/(https?:\/\/.*\.(?:png|jpg))/))
-        images?.push(url)
+        images.push(url)
     })
     
     let newArticle = {

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArticlesService } from './services/articles.service';
 import { ArticleAddComponent } from './article-add/article-add.component';
 import { DatePipe } from '@angular/common';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DatePipe } from '@angular/common';
     ArticleComponent,
     NavigationBarComponent,
     AboutComponent,
-    ArticleAddComponent
+    ArticleAddComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

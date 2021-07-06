@@ -1,0 +1,58 @@
+.article-title .home-title .home-subtitle{
+    text-align: center;
+}
+
+.home-title{
+    font-size: 24px;
+    text-align: left;
+    color: lightskyblue;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px black;
+}
+
+.home-subtitle{
+    font-size: 24px;
+    text-align: left;
+    color: lightskyblue;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+.article-title{
+    font-size: 24px;
+}
+
+.article-subtitle{
+    font-style: italic;
+}
+
+
+.container{
+    margin-top: 20px;
+    display: grid;
+    width: 70%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-wrapper{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+
+    color: white;
+    padding: 10px;
+    background-color: lightskyblue;
+    border-radius: 25px;
+
+    transition: 250ms;
+}
+
+.article-wrapper:hover{
+    box-shadow: 2px 3px 6px black;
+}
+
+.article-read-more{
+    color: white;
+}

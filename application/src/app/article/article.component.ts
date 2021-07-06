@@ -21,10 +21,12 @@ export class ArticleComponent implements OnInit {
   }
 
   onCommentSubmit(){
-    console.log('onCommentSubmit')
 
-    let name = (document.getElementById('comment-name') as HTMLInputElement).value.trim();
-    let text = (document.getElementById('comment-text') as HTMLInputElement).value.trim();
+    let nameElement = (document.getElementById('comment-name') as HTMLInputElement)
+    let textElement = (document.getElementById('comment-text') as HTMLInputElement)
+
+    let name = nameElement.value.trim();
+    let text = textElement.value.trim();
 
     let comment = new Comment(name, text);
 
@@ -33,7 +35,8 @@ export class ArticleComponent implements OnInit {
       return;
     }
 
-    console.log(comment);
+    nameElement.value = ''
+    textElement.value = '' 
 
     if(this.article){
       this.articleService.sendComment(this.article.id, comment).subscribe(article => this.article = article);

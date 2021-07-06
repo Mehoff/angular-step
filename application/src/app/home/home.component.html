@@ -1,0 +1,18 @@
+<div class="container">
+    <h1 class="home-title">Добро пожаловать на мой блог!</h1>
+    
+    <div *ngIf="lastArticle; else elseBlock">
+        <p class="home-subtitle">Последняя статья:</p>
+        <div class="article-wrapper">
+            <p class="article-title">{{lastArticle.title}}</p>
+            <p class="article-subtitle">{{lastArticle.subtitle}}</p>
+            <p class="article-date">Дата публикации: {{lastArticle.date}}</p>
+            <!-- <a (click)="routeToArticle()">> Читать дальше</a> -->
+            <a class="article-read-more" routerLink="articles/{{lastArticle.id}}">> Читать дальше</a>
+        </div>
+    </div>
+
+    <ng-template #elseBlock>
+        <p>Sadge</p>
+    </ng-template>
+</div>

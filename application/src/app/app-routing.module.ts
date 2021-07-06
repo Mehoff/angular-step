@@ -7,8 +7,10 @@ import { ArticleComponent } from './article/article.component'
 import { ArticleListComponent } from './article-list/article-list.component';
 import { AboutComponent } from './about/about.component';
 import { ArticleAddComponent } from './article-add/article-add.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Route[] = [
+  { path: "", component: HomeComponent },
   { path: "articles/:id", component: ArticleComponent },
   { path: "articles", component: ArticleListComponent },
   { path: "addArticle", component: ArticleAddComponent},
